@@ -3,21 +3,19 @@
     <title>Lift</title>
 
     <!-- BEGIN META -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="your,keywords">
-    <meta name="description" content="Short explanation about this website">
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title>Hello World</title>
 
     <!-- BEGIN STYLESHEETS -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,600,700,800' rel='stylesheet'
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300italic,400italic,300,400,500,700,900' rel='stylesheet'
           type='text/css'/>
     <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/bootstrap.css"/>
     <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/materialadmin.css"/>
-    <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/libs/toogle-switch/ToggleSwitch.css"/>
-    <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/libs/jquery-ui/jquery-ui-theme.css"/>
-
-    <!--Font Awesome Icon Font-->
     <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/material-design-iconic-font.min.css"/>
     <!--Material Design Iconic Font-->
     <!-- Additional CSS includes -->
@@ -27,32 +25,8 @@
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 </head>
-<body class="header-fixed full-content">
-<header id="header">
-    <div class="headerbar">
-        <div class="headerbar-left col-sm-12">
-            <ul class="header-nav header-nav-options">
-                <li class="col-xs-2">
-                    <a class="btn btn-icon-toggle menubar-toggle" data-toggle="menubar" href="give-ride.html">
-                        <i class="zmdi zmdi-arrow-back"></i>
-                    </a>
-                </li>
-                <li class="header-nav-brand col-xs-6">
-                    <div class="brand-holder">
-                        <a href="choice.html">
-                            <span class="text-lg text-bold">Lift</span>
-                        </a>
-                    </div>
-                </li>
-                <li class="col-xs-2 pull-right btn-filter">
-                    <a class="btn btn-icon-toggle" data-toggle="" href="">
-                        <i class="zmdi zmdi-filter-list"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</header>
+<body class="full-content">
+
 <div id="base" class="no-padding">
     <div class="offcanvas">
     </div>
@@ -60,41 +34,32 @@
         <section class="has-actions">
             <div class="section-body">
                 <div class="row">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <ul class="list">
-                                    <li class="tile">
-                                        <div class="tile-content">
-                                            <div class="tile-text">
-                                                Start This Ride
-                                            </div>
-                                            <div class="tile-icon">
-                                                <input type="checkbox" name="switch" id="switch">
+                    <div class="col-xs-12 hbox-xs">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="hbox-column width-2">
+                                    <img class="img-circle img-responsive pull-left" src="../assets/img/avatar1.jpg"
+                                         alt="">
+                                </div><!--end .hbox-column -->
+                                <div class="hbox-column v-top">
+                                    <div class="clearfix">
+                                        <div class="col-xs-12">
+                                            <a class="text-lg text-medium" href="../profile.html">Tahsan Khan</a>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix margin-bottom-lg">
+                                        <div class="col-xs-12">
+                                            <div class="star-rating">
+                                                <input type="number" name="rating" class="rating" value="3"/>
                                             </div>
                                         </div>
-                                    </li>
-                                    <li class="tile">
-                                        <div class="tile-content">
-                                            <div class="tile-text">
-                                                Available Seats
-                                            </div>
-                                            <div class="tile-icon">
-                                                <input type="text" class="form-control" id="spinner" value="8">
-                                            </div>
+                                    </div>
+                                    <div class="clearfix">
+                                        <div class="col-xs-12 text-lg text-medium">
+                                            <span class="zmdi zmdi-phone"></span> &nbsp;+8801676048385
                                         </div>
-                                    </li>
-                                    <li class="tile">
-                                        <div class="tile-content">
-                                            <div class="tile-text">
-                                                Ride Completed
-                                            </div>
-                                            <div class="tile-icon">
-                                                <input type="checkbox" name="switch" id="switch1">
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                                    </div>
+                                </div><!--end .hbox-column -->
                             </div>
                         </div>
                     </div>
@@ -121,6 +86,14 @@
                                             <a class="btn btn-flat btn-success ink-reaction">
                                                 <i class="zmdi zmdi-hc-2x zmdi-directions"></i>
                                             </a>
+                                        </a>
+                                    </li>
+                                    <li class="tile">
+                                        <a class="tile-content ink-reaction">
+                                            <div class="tile-text">
+                                                4 Out Of 6 Avaulable
+                                                <small>Seats</small>
+                                            </div>
                                         </a>
                                     </li>
                                     <li class="tile">
@@ -156,8 +129,8 @@
             <div class="section-action" style="left:0 !important;">
                 <div class="section-action-row">
                     <div class="btn-group btn-group-justified " role="group" aria-label="Justified button group">
-                        <a href="give-ride.html" class="btn btn-flat" role="button">Delete</a>
-                        <a href="create-ride.html" class="btn btn-flat" role="button">Edit</a>
+                        <a class="btn btn-flat" role="button">Back</a>
+                        <a class="btn btn-flat" role="button">Cancel Ride</a>
                     </div>
                 </div>
             </div>
@@ -168,20 +141,11 @@
 <!-- BEGIN JAVASCRIPT -->
 <script src="../assets/js/libs/jquery/jquery-1.11.2.min.js"></script>
 <script src="../assets/js/libs/jquery/jquery-migrate-1.2.1.min.js"></script>
-<script src="../assets/js/libs/jquery-ui/jquery-ui.min.js"></script>
 <script src="../assets/js/libs/bootstrap/bootstrap.min.js"></script>
 <script src="../assets/js/libs/nanoscroller/jquery.nanoscroller.min.js"></script>
-<script src="../assets/js/libs/toogle-switch/ToggleSwitch.js"></script>
+<script src="../assets/js/libs/bootstrap-rating/bootstrap-rating-input.min.js"></script>
 <script src="../assets/js/core/source/App.js"></script>
 <script src="../assets/js/core/source/AppVendor.js"></script>
 <script src="../assets/js/core/demo/Demo.js"></script>
-<script src="../assets/js/core/demo/DemoFormComponents.js"></script>
-
-<script>
-    $(function () {
-        $("#switch").toggleSwitch();
-        $("#switch1").toggleSwitch();
-    });
-</script>
 </body>
 </html>

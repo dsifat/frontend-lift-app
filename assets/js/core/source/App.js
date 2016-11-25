@@ -219,4 +219,10 @@
 	window.materialadmin.App = new App;
 	// ratings
 	$('.star-rating').rating();
+	//swithc
+
 }(jQuery)); // pass in (jQuery):
+
+function goBack() {
+	window.history.back();
+}

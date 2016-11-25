@@ -14,7 +14,6 @@
           type='text/css'/>
     <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/bootstrap.css"/>
     <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/materialadmin.css"/>
-    <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/font-awesome.min.css"/>
     <!--Font Awesome Icon Font-->
     <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/material-design-iconic-font.min.css"/>
     <!--Material Design Iconic Font-->
@@ -23,7 +22,7 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 
 </head>
-<body class="">
+<body class="full-content">
 <div id="base" class="no-padding">
     <div id="content">
         <form class="form">
@@ -45,10 +44,10 @@
                     </div>
                     <div>
                         <label class="radio-inline radio-styled">
-                            <input type="checkbox" name="gendre"><span>Male</span>
+                            <input type="checkbox" name="gendre"><span>Only Male</span>
                         </label>
                         <label class="radio-inline radio-styled">
-                            <input type="checkbox" name="gendre"><span>Female</span>
+                            <input type="checkbox" name="gendre"><span>Only Female</span>
                         </label>
                     </div>
                     <br>
@@ -66,14 +65,16 @@
                         </div>
                     </div>
                 </div><!--end .card-body -->
-                <div class="card-actionbar">
-                    <div class="btn-group btn-group-justified" role="group">
-                        <a href="give-ride.html" class="btn btn-danger" role="button"><i class="md md-lg md-cancel"></i>Cancel</a>
-                        <a href="give-ride.html" class="btn btn-success" role="button"><i class="md md-lg md-done"></i>Success</a>
-                    </div>
-                </div>
             </div><!--end .card -->
         </form>
+        <div class="section-action" style="left:0 !important;">
+            <div class="section-action-row">
+                <div class="btn-group btn-group-justified " role="group" aria-label="Justified button group">
+                    <a href="give-ride.html" class="btn btn-flat" role="button">Cancel Ride</a>
+                    <a href="give-ride.html" class="btn btn-flat" role="button">Create Ride</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

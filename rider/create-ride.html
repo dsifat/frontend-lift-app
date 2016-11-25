@@ -14,52 +14,53 @@
           type='text/css'/>
     <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/bootstrap.css"/>
     <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/materialadmin.css"/>
-    <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/font-awesome.min.css"/>
+    <link type="text/css" rel="stylesheet"
+          href="../assets/css/theme-2/libs/bootstrap-tagsinput/bootstrap-tagsinput.css"/>
     <!--Font Awesome Icon Font-->
     <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/material-design-iconic-font.min.css"/>
     <!--Material Design Iconic Font-->
     <!-- Additional CSS includes -->
 
-    <link rel="stylesheet" href="/../assets/css/style.css">
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="/../assets/js/libs/utils/html5shiv.js"></script>
-    <script type="text/javascript" src="/../assets/js/libs/utils/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body class="">
 <div id="base" class="no-padding">
     <div id="content" class="no-padding">
         <section class="col-xs-12 style-info no-padding">
-            <form  class="form-horizontal form-inverse no-padding">
+            <form class="form-horizontal form-inverse no-padding">
                 <div class="card style-transparent no-padding">
                     <div class="card-body">
                         <div class="form-group row">
-                            <i class="force-padding md-lg md-arrow-back col-xs-1"></i>
-                            <i class="force-padding col-xs-1 md md-panorama-fisheye text-center"></i>
+                            <div class="col-xs-1">
+                                <i class="force-padding zmdi zmdi-arrow-back col-xs-1"></i>
+                            </div>
+                            <i class="force-padding col-xs-1 zmdi zmdi-dot-circle text-center"></i>
                             <div class="col-xs-8">
-                                <input type="text" class="force-padding form-control" id="from" placeholder="From">
+                                <input type="text" class="form-control" id="from" placeholder="From">
                             </div>
                             <div class="col-xs-1">
-                                <a href="creat-ride-details.html"><i class="force-padding md md-arrow-forward"></i></a>
+                                <a href="creat-ride-details.html"><i class="force-padding zmdi zmdi-arrow-forward"></i></a>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-xs-1"></div>
-                            <i class="force-padding col-xs-1 md md-place text-center"></i>
+                            <div class="col-xs-1">
+
+                            </div>
+                            <i class="force-padding col-xs-1 zmdi zmdi-pin text-center"></i>
                             <div class="col-xs-8">
-                                <input type="text" class="force-padding form-control" id="to" placeholder="To">
+                                <input type="text" class="form-control" id="to" placeholder="To">
                             </div>
                             <div class="col-xs-1">
 
                             </div>
                         </div>
                         <div class="form-group row">
-                            <i class="force-padding col-xs-1"></i>
-                            <i class="force-padding col-xs-1 md md-trending-up text-center"></i>
+                            <div class="col-xs-1">
+
+                            </div>
+                            <i class="force-padding col-xs-1 zmdi zmdi-trending-up text-center"></i>
                             <div class="col-xs-8">
-                                <input type="text" class="force-padding form-control" id="waypoints" placeholder="Waypoints">
+                                <input type="text" class="form-control" id="waypoints" placeholder="Waypoints">
                             </div>
                             <div class="col-xs-1">
 
@@ -84,11 +85,12 @@
 <script src="../assets/js/libs/jquery/jquery-migrate-1.2.1.min.js"></script>
 <script src="../assets/js/libs/bootstrap/bootstrap.min.js"></script>
 <script src="../assets/js/libs/nanoscroller/jquery.nanoscroller.min.js"></script>
+<script src="../assets/js/libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
 
 <!-- Put App.js last in your javascript imports -->
 <script src="../assets/js/core/source/App.min.js"></script>
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVBx2TvFApctna4yOpv6fr6nE7AhIg7eo&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVBx2TvFApctna4yOpv6fr6nE7AhIg7eo&libraries=places&callback=initMap">
 </script>
 <script>
     function initMap() {
@@ -101,16 +103,22 @@
         directionsDisplay.setMap(map);
 
 
-
-        var onChangeHandler = function() {
+        var onChangeHandler = function () {
             calculateAndDisplayRoute(directionsService, directionsDisplay);
         };
+        var from = document.getElementById('from');
+        var searchFrom = new google.maps.places.SearchBox(from);
+        var to = document.getElementById('to');
+        var searchTo = new google.maps.places.SearchBox(to);
+        var waypt = document.getElementById('waypoints');
+        var searchTo = new google.maps.places.SearchBox(waypt);
+
         document.getElementById('to').addEventListener('change', onChangeHandler);
         document.getElementById('waypoints').addEventListener('change', onChangeHandler);
     }
 
     function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-        var waypts = [{location:document.getElementById('waypoints').value}];
+        var waypts = [{location: document.getElementById('waypoints').value}];
 
         directionsService.route({
             origin: document.getElementById('from').value,
@@ -118,7 +126,7 @@
             waypoints: waypts,
             optimizeWaypoints: true,
             travelMode: 'DRIVING'
-        }, function(response, status) {
+        }, function (response, status) {
             if (status === 'OK') {
                 directionsDisplay.setDirections(response);
             } else {

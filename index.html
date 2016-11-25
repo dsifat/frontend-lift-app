@@ -1,35 +1,23 @@
-<html lang="en">
+<html>
 <head>
-    <title>Lift</title>
-
-    <!-- BEGIN META -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="your,keywords">
-    <meta name="description" content="Short explanation about this website">
 
     <!-- BEGIN STYLESHEETS -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,600,700,800' rel='stylesheet' type='text/css'/>
     <link type="text/css" rel="stylesheet" href="assets/css/theme-2/bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="assets/css/theme-2/materialadmin.css" />
-    <link type="text/css" rel="stylesheet" href="assets/css/theme-2/font-awesome.min.css" /> <!--Font Awesome Icon Font-->
-    <link type="text/css" rel="stylesheet" href="assets/css/theme-2/material-design-iconic-font.min.css" /> <!--Material Design Iconic Font-->
     <!-- Additional CSS includes -->
-
-    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- BEGIN JAVASCRIPT -->
+    <script src="assets/js/libs/jquery/jquery-1.11.2.min.js"></script>
+    <script src="assets/js/libs/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script src="assets/js/libs/bootstrap/bootstrap.min.js"></script>
 
 </head>
-<body class="menubar-hoverable header-fixed menubar-pin">
+<body>
 <header id="header">
     <div class="headerbar">
         <div class="headerbar-left col-sm-12">
             <ul class="header-nav header-nav-options">
-                <li class="col-xs-2">
-                    <a class="btn btn-icon-toggle menubar-toggle" data-toggle="menubar" href="javascript:void(0);">
-                        <i class="md md-menu"></i>
-                    </a>
-                </li>
                 <li class="header-nav-brand col-xs-6">
                     <div class="brand-holder">
                         <a href="choice.html">
@@ -46,55 +34,24 @@
         <section>
             <div class="section-body">
                 <div class="card style-transparent">
-                    <div class="card-head">
-                        <img class="center-block img-responsive" src="assets/img/car-2.png" alt="">
-                    </div>
                     <div class="card-body">
-                        <a role="button" class="btn btn-accent btn-lg btn-block" href="caller/take-ride.html">Take a Lift</a>
-                        </br>
-                        <a role="button" class="btn btn-primary btn-lg btn-block" href="rider/give-ride.html">Give a Ride</a>
+                        <form class="form" action="choice.html">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="username">
+                                <label for="username">Username / E-mail</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="password">
+                                <label for="password">Password</label>
+                            </div>
+                            <button type="submit" class="btn btn-lg btn-block btn-primary">Log In</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </section>
     </div>
-    <div id="menubar" class="">
-
-        <div class="nano has-scrollbar">
-            <div class="nano-content" tabindex="0" style="right: -15px;">
-                <div class="menubar-scroll-panel">
-                    <div class="menubar-foot-panel">
-                        <ul id="" class="gui-controls gui-controls-tree">
-                            <li>
-                                <a href="#">
-                                    <div class="gui-icon"><i class="md md-account-circle"></i></div>
-                                    <span class="title">Profile</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="gui-icon"><i class="md md-exit-to-app"></i></div>
-                                    <span class="title">Log Out</span>
-                                </a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="nano-pane">
-                <div class="nano-slider" style="height: 486px; transform: translate(0px, 0px);"></div>
-            </div>
-        </div>
-    </div>
 </div>
 
-<!-- BEGIN JAVASCRIPT -->
-<script src="assets/js/libs/jquery/jquery-1.11.2.min.js"></script>
-<script src="assets/js/libs/jquery/jquery-migrate-1.2.1.min.js"></script>
-<script src="assets/js/libs/bootstrap/bootstrap.min.js"></script>
-<script src="assets/js/libs/nanoscroller/jquery.nanoscroller.min.js"></script>
-<script src="assets/js/core/source/App.js"></script>
-<script src="assets/js/core/source/AppNavigation.js"></script>
 </body>
 </html>

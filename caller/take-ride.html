@@ -10,6 +10,7 @@
     <meta name="description" content="Short explanation about this website">
 
     <!-- BEGIN STYLESHEETS -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300italic,400italic,300,400,500,700,900' rel='stylesheet' type='text/css'/>
     <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/bootstrap.css"/>
     <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/materialadmin.css"/>
     <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/material-design-iconic-font.min.css"/>
@@ -30,7 +31,7 @@
                             </div>
                             <div class="force-padding col-xs-1 zmdi zmdi-dot-circle text-center text-accent-dark"></div>
                             <div class="col-xs-7">
-                                <input type="text" class="force-padding form-control input-sm" id="from" placeholder="From">
+                                <input id="from" type="search" class="form-control"  placeholder="From">
                             </div>
                             <div class="col-xs-1 pull-right">
                                 <a href="ride-list.html"><i class="force-padding zmdi zmdi-arrow-forward pull-right"></i></a>
@@ -41,7 +42,7 @@
                             </div>
                             <i class="force-padding col-xs-1 zmdi zmdi-pin text-center text-primary-dark"></i>
                             <div class="col-xs-7">
-                                <input type="text" class="force-padding form-control input-sm" id="to" placeholder="To">
+                                <input type="search" class="form-control" id="to" placeholder="To">
                             </div>
                             <div class="col-xs-1 pull-right">
                             </div>
@@ -51,7 +52,7 @@
                             </div>
                             <i class="force-padding col-xs-1 zmdi zmdi-watch text-center text-warning"></i>
                             <div class="col-xs-7">
-                                <input type="text" class="force-padding form-control input-sm" id="date-time" placeholder="Date/Time">
+                                <input type="datetime-local" class="form-control" id="date-time" placeholder="Date/Time">
                             </div>
                             <div class="col-xs-1 pull-right">
                             </div>
@@ -79,35 +80,35 @@
 <script src="../assets/js/core/source/App.js"></script>
 <script src="../assets/js/core/source/AppNavigation.js"></script>
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVBx2TvFApctna4yOpv6fr6nE7AhIg7eo&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVBx2TvFApctna4yOpv6fr6nE7AhIg7eo&libraries=places&callback=initMap">
 </script>
+
 <script>
     function initMap() {
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
         var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 7,
+            zoom: 10,
             center: {lat: 23.8103, lng: 90.4125}
         });
         directionsDisplay.setMap(map);
 
-
-
         var onChangeHandler = function() {
             calculateAndDisplayRoute(directionsService, directionsDisplay);
         };
+        var from = document.getElementById('from');
+        var searchFrom = new google.maps.places.SearchBox(from);
+        var to = document.getElementById('to');
+        var searchTo = new google.maps.places.SearchBox(to);
+
+        document.getElementById('from').addEventListener('change', onChangeHandler);
         document.getElementById('to').addEventListener('change', onChangeHandler);
-        document.getElementById('waypoints').addEventListener('change', onChangeHandler);
     }
 
     function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-        var waypts = [{location:document.getElementById('waypoints').value}];
-
         directionsService.route({
             origin: document.getElementById('from').value,
             destination: document.getElementById('to').value,
-            waypoints: waypts,
-            optimizeWaypoints: true,
             travelMode: 'DRIVING'
         }, function(response, status) {
             if (status === 'OK') {
@@ -118,5 +119,6 @@
         });
     }
 </script>
+
 </body>
 </html>

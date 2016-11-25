@@ -14,7 +14,6 @@
           type='text/css'/>
     <link type="text/css" rel="stylesheet" href="assets/css/theme-2/bootstrap.css"/>
     <link type="text/css" rel="stylesheet" href="assets/css/theme-2/materialadmin.css"/>
-    <link type="text/css" rel="stylesheet" href="assets/css/theme-2/font-awesome.min.css"/>
     <!--Font Awesome Icon Font-->
     <link type="text/css" rel="stylesheet" href="assets/css/theme-2/material-design-iconic-font.min.css"/>
     <!--Material Design Iconic Font-->
@@ -23,10 +22,7 @@
     <link rel="stylesheet" href="/assets/css/style.css">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="/assets/js/libs/utils/html5shiv.js"></script>
-    <script type="text/javascript" src="/assets/js/libs/utils/respond.min.js"></script>
-    <![endif]-->
+
 </head>
 <body class="header-fixed menubar-hoverable menubar-pin">
 <header id="header">
@@ -34,8 +30,8 @@
         <div class="headerbar-left col-sm-12">
             <ul class="header-nav header-nav-options">
                 <li class="col-xs-2">
-                    <a class="btn btn-icon-toggle menubar-toggle" data-toggle="menubar" href="javascript:void(0);">
-                        <i class="md md-menu"></i>
+                    <a class="btn btn-icon-toggle" onclick="goBack()">
+                        <i class="zmdi zmdi-arrow-back"></i>
                     </a>
                 </li>
                 <li class="header-nav-brand col-xs-6">
@@ -47,7 +43,7 @@
                 </li>
                 <li class="col-xs-2 pull-right btn-filter">
                     <a class="btn btn-icon-toggle" data-toggle="" href="">
-                        <i class="md md-filter-list"></i>
+                        <i class="zmdi zmdi-filter-list"></i>
                     </a>
                 </li>
                 <li class="col-xs-2 pull-right header-nav-brand">
@@ -61,7 +57,7 @@
         </div>
     </div>
 </header>
-<div id="base">
+<div id="base" class="no-padding">
     <div id="content">
         <section class="no-padding col-xs-12">
             <img class="img-circle border-white border-xl img-responsive center-block"
@@ -86,7 +82,7 @@
                         <li class="tile">
                             <a class="tile-content ink-reaction">
                                 <div class="tile-icon">
-                                    <i class="md md-location-on"></i>
+                                    <i class="zmdi zmdi-location-on"></i>
                                 </div>
                                 <div class="tile-text">
                                     621 Johnson Ave, Suite 600
@@ -128,7 +124,7 @@
                         <li class="tile">
                             <a class="tile-content ink-reaction">
                                 <div class="tile-icon">
-                                    <i class="md md-email"></i>
+                                    <i class="zmdi zmdi-email"></i>
                                 </div>
                                 <div class="tile-text">
                                     tahsan.khan@gmail.com
@@ -147,64 +143,6 @@
         </section>
         <!-- END PROFILE HEADER  -->
     </div>
-
-    <div id="menubar">
-
-        <div class="nano has-scrollbar">
-            <div class="nano-content" tabindex="0" style="right: -15px;">
-                <div class="menubar-scroll-panel">
-                    <ul id="main-menu" class="gui-controls gui-controls-tree">
-                        <li class="">
-                            <a href="ride-list.html">
-                                <div class="gui-icon"><i class="md md-directions-car"></i></div>
-                                <span class="title">Your Rides</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="requests-ride.html">
-                                <div class="gui-icon">
-                                    <i class="md md-receipt"></i>
-                                </div>
-                                <span class="title">Requests Received<span class="badge style-danger">4</span></span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="sent-rides.html">
-                                <div class="gui-icon"><i class="md md-send"></i></div>
-                                <span class="title">Requests Sent</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="notifications.html">
-                                <div class="gui-icon"><i class="md md-notifications"></i></div>
-                                <span class="title">Notifications<span class="badge style-danger">3</span></span>
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="menubar-foot-panel">
-                        <ul id="" class="gui-controls gui-controls-tree">
-                            <li class="active expanded">
-                                <a href="profile.html">
-                                    <div class="gui-icon"><i class="md md-account-circle"></i></div>
-                                    <span class="title">Profile</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <div class="gui-icon"><i class="md md-exit-to-app"></i></div>
-                                    <span class="title">Log Out</span>
-                                </a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="nano-pane">
-                <div class="nano-slider" style="height: 486px; transform: translate(0px, 0px);"></div>
-            </div>
-        </div>
-    </div>
 </div>
 
 
@@ -218,8 +156,7 @@
 <script src="assets/js/core/source/App.min.js"></script>
 
 <script src="assets/js/core/source/App.js"></script>
-<script>
-</script>
+
 
 </body>
 </html>
