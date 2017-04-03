@@ -1,6 +1,6 @@
 <html lang="en">
 <head>
-    <title>Lift</title>
+    <title>Shyori</title>
 
     <!-- BEGIN META -->
     <meta charset="utf-8">
@@ -37,7 +37,7 @@
                 <li class="header-nav-brand col-xs-6">
                     <div class="brand-holder">
                         <a href="choice.html">
-                            <span class="text-lg text-bold">Lift</span>
+                            <span class="text-lg text-bold">Shyori</span>
                         </a>
                     </div>
                 </li>
@@ -62,20 +62,20 @@
         <section class="no-padding col-xs-12">
             <img class="img-circle border-white border-xl img-responsive center-block"
                  src="assets/img/avatar1.jpg?1403934956" alt="">
-            <h3 class="text-center">Tahsan Khan<br>
-                <div class="star-rating">
-                    <div class="rating-input"><span class="glyphicon text-primary glyphicon-star" data-value="0"></span><span
-                            class="glyphicon text-primary glyphicon-star" data-value="1"></span><span
-                            class="glyphicon text-primary glyphicon-star" data-value="2"></span><span
-                            class="glyphicon text-primary glyphicon-star" data-value="3"></span><span
-                            class="glyphicon text-primary glyphicon-star" data-value="4"></span><span
-                            class="glyphicon text-primary glyphicon-star" data-value="5"></span><input type="number"
-                                                                                                       name="rating"
-                                                                                                       class="rating hidden"
-                                                                                                       value="3"></div>
-                </div>
-            </h3>
+            <h3 class="text-center" id="idname"><br>
 
+            </h3>
+            <!--<div class="text-center center-block star-rating">-->
+                <!--<div class="rating-input"><span class="glyphicon text-primary glyphicon-star" data-value="0"></span><span-->
+                        <!--class="glyphicon text-primary glyphicon-star" data-value="1"></span><span-->
+                        <!--class="glyphicon text-primary glyphicon-star" data-value="2"></span><span-->
+                        <!--class="glyphicon text-primary glyphicon-star" data-value="3"></span><span-->
+                        <!--class="glyphicon text-primary glyphicon-star" data-value="4"></span><span-->
+                        <!--class="glyphicon text-primary glyphicon-star" data-value="5"></span><input type="number"-->
+                                                                                                   <!--name="rating"-->
+                                                                                                   <!--class="rating hidden"-->
+                                                                                                   <!--value="3"></div>-->
+            <!--</div>-->
             <div class="card no-margin">
                 <div class="card-body no-padding">
                     <ul class="list">
@@ -156,6 +156,14 @@
 <script src="assets/js/core/source/App.min.js"></script>
 
 <script src="assets/js/core/source/App.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var $username=localStorage.username;
+        $("#idname").text($username);
+
+    });
+</script>
 
 
 </body>

@@ -218,7 +218,6 @@
 	window.materialadmin = window.materialadmin || {};
 	window.materialadmin.App = new App;
 	// ratings
-	$('.star-rating').rating();
 	//swithc
 
 }(jQuery)); // pass in (jQuery):

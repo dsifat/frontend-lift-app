@@ -1,6 +1,6 @@
 <html lang="en">
 <head>
-    <title>Lift</title>
+    <title>Shyori</title>
 
     <!-- BEGIN META -->
     <meta name="format-detection" content="telephone=no">
@@ -42,7 +42,7 @@
                                 <div class="hbox-column v-top">
                                     <div class="clearfix">
                                         <div class="col-xs-12">
-                                            <a class="text-lg text-medium" href="../profile.html">Tahsan Khan</a>
+                                            <a class="text-lg text-medium" href="../profile.html" id="driver-name"></a>
                                         </div>
                                     </div>
                                     <div class="clearfix margin-bottom-lg">
@@ -119,24 +119,14 @@
                                         </a>
                                     </li>
                                 </ul>
+
                             </div><!--end .card-body -->
                         </div><!--end .card -->
+
                     </div>
                 </div>
-                <div class="modal fade" id="textModal" tabindex="-1" role="dialog" aria-labelledby="textModalLabel" aria-hidden="true" style="display: none;">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h4 class="modal-title" id="textModalLabel">Map View</h4>
-                            </div>
-                            <div class="modal-body">
-
-                            </div>
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                </div>
             </div>
+
             <div class="section-action" style="left:0 !important;">
                 <div class="section-action-row">
                     <div class="btn-group btn-group-justified " role="group" aria-label="Justified button group">
@@ -147,6 +137,7 @@
                 </div>
             </div>
         </section>
+        <div id="map-canvas"></div>
     </div>
 </div>
 
@@ -160,13 +151,14 @@
 <script src="../assets/js/core/source/AppVendor.js"></script>
 <script src="../assets/js/core/demo/Demo.js"></script>
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVBx2TvFApctna4yOpv6fr6nE7AhIg7eo&libraries=places&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaRBB4-Mi-5p3_MSmSsjR2BuLAwsjeG6Q&libraries=places&callback=initMap">
 </script>
+
 <script>
     function initMap() {
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
-        var map = new google.maps.Map(document.getElementById('map'), {
+        var map = new google.maps.Map(document.getElementById('map-canvas'), {
             zoom: 10,
             center: {lat: 23.8103, lng: 90.4125}
         });
@@ -193,6 +185,22 @@
             }
         });
     }
+</script>
+<script>
+    $(document).ready(function () {
+        ride_id=sessionStorage.ride_id;
+        $.ajax({
+            type:"GET",
+            url:"http://127.0.0.1:5000/ride-details/",
+            data:{ride_id:8},
+            dataType:'json',
+            crossDomain:true,
+            jsonpCallback: 'callback',
+            success:function (response) {
+                ride=response.ride;
+            }
+        });
+    });
 </script>
 </body>
 </html>

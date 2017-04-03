@@ -1,6 +1,6 @@
 <html lang="en">
 <head>
-    <title>Lift</title>
+    <title>Shyori</title>
 
     <!-- BEGIN META -->
     <meta charset="utf-8">
@@ -32,7 +32,7 @@
                 <li class="header-nav-brand col-xs-6">
                     <div class="brand-holder">
                         <a href="../choice.html">
-                            <span class="text-lg text-bold">Lift</span>
+                            <span class="text-lg text-bold">Shyori</span>
                         </a>
                     </div>
                 </li>
@@ -44,28 +44,12 @@
     <div class="offcanvas">
     </div>
     <div id="content">
-        <section class="no-padding">
-            <a href="ride-details.html">
-                <div class="col-xs-12 no-padding">
-                    <div class="card" style="">
-                        <div class="card-body style-info">
-                            <div class="col-xs-9">
-                                <strong>GULSHAN-DHANMONDI</strong><br>
-                                <small class="text-xs">Tashan Khan in 25/07/2017 05:36 PM</small>
-                            </div>
-                            <div class="col-xs-3">
-                                <small class="text-sm">50 BDT</small><br>
-                                <small class="text-sm">3 Seats</small>
-                            </div>
-                        </div>
-                        <!--end .card-body -->
-                    </div><!--end .card -->
-                </div>
-            </a>
+        <section class="no-padding" id="rides">
+
         </section>
-        <section class="full-content">
+        <section class="full-content" id="action-bar">
             <div class=" section-action style-transparent" style="box-shadow: none !important;-webkit-box-shadow: none !important;">
-                <div class="section-floating-action-row">
+                <div class="section-floating-action-row" id="new-button">
                     <a style="background-color: deeppink;color: white" class="btn ink-reaction btn-floating-action" href="create-ride.html" data-toggle="tooltip" data-placement="top" data-original-title="New Ride">
                         <i class="zmdi zmdi-plus"></i>
                     </a>
@@ -94,13 +78,13 @@
                             </a>
                         </li>
                         <li class="">
-                            <a href="sent-rides.html">
+                            <a href="#">
                                 <div class="gui-icon"><i class="zmdi zmdi-mail-send"></i></div>
                                 <span class="title">Requests Sent</span>
                             </a>
                         </li>
                         <li class="">
-                            <a href="notifications.html">
+                            <a href="#">
                                 <div class="gui-icon"><i class="zmdi zmdi-notifications"></i></div>
                                 <span class="title">Notifications<span class="badge style-danger">3</span></span>
                             </a>
@@ -117,7 +101,7 @@
                             <li>
                                 <a href="#">
                                     <div class="gui-icon"><i class="zmdi zmdi-long-arrow-return"></i></div>
-                                    <span class="title">Log Out</span>
+                                    <a class="title" onclick="localStorage.clear();">Log Out</a>
                                 </a>
                             </li>
 
@@ -143,7 +127,49 @@
 <script src="../assets/js/core/source/App.min.js"></script>
 <script src="../assets/js/core/source/AppNavigation.js"></script>
 <!-- END JAVASCRIPT -->
-
+<script>
+    $(document).ready(function () {
+        if(localStorage.ride_lock==1){
+            $('#action-bar').remove();
+        }
+        $.ajax({
+            type:"GET",
+            url:'http://localhost:5000/own-ride/',
+            data:{id:localStorage.rider_id},
+            dataType:'json',
+            crossDomain:true,
+            jsonpCallback: 'callback',
+            success: function (response) {
+                var rides=response.ride;
+                localStorage.rider_ride_id=rides[0][0];
+                ride_from=localStorage.rider_from;
+                ride_to=localStorage.rider_to;
+                ride_from=ride_from.substring(0,ride_from.indexOf(','));
+                ride_to=ride_to.substring(0,ride_to.indexOf(','));
+                for(var i in rides){
+                    $('#rides').append(
+                            '<a href="ride-details.html">\
+                                    <div class="col-xs-12 no-padding">\
+                                    <div class="card" style="">\
+                                    <div class="card-body style-info">\
+                                    <div class="col-xs-9">\
+                                    <strong>'+ride_from+'-'+ride_to+'</strong><br>\
+                                    <small class="text-xs">'+localStorage.rider_username+'</small>\
+                                    </div>\
+                                    <div class="col-xs-3">\
+                                    <small class="text-sm">'+rides[i][6]+' BDT</small><br>\
+                                    <small class="text-sm">'+rides[i][5]+' Seats</small>\
+                                </div>\
+                                </div>\
+                                <!--end .card-body -->\
+                                </div><!--end .card -->\
+                                </div>'
+                    );
+                }
+            }
+        });
+    });
+</script>
 
 </body>
 </html>

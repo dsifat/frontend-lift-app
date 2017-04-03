@@ -1,6 +1,6 @@
 <html lang="en">
 <head>
-    <title>Lift</title>
+    <title>Shyori</title>
 
     <!-- BEGIN META -->
     <meta charset="utf-8">
@@ -23,47 +23,51 @@
 
 
 </head>
-<body class="">
+<body class="header-fixed menubar-hoverable menubar-pin">
+<header id="header">
+    <div class="headerbar">
+        <div class="headerbar-left col-xs-12">
+            <ul class="header-nav header-nav-options">
+                <li class="col-xs-2">
+                    <a class="btn btn-icon-toggle menubar-toggle" data-toggle="menubar" href="javascript:void(0);">
+                        <i class="zmdi zmdi-arrow-back" onclick="goBack();"></i>
+                    </a>
+                </li>
+                <li class="header-nav-brand col-xs-6">
+                    <div class="brand-holder">
+                        <a href="../choice.html">
+                            <span class="text-lg text-bold">Shyori</span>
+                        </a>
+                    </div>
+                </li>
+                <li class="col-xs-2 pull-right btn-filter">
+                    <a class="btn btn-icon-toggle" data-toggle="">
+                        <i id="forward" class="zmdi zmdi-arrow-forward"></i>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</header>
 <div id="base" class="no-padding">
+    <div class="offcanvas">
+    </div>
     <div id="content" class="no-padding">
         <section class="col-xs-12 style-info no-padding">
             <form class="form-horizontal form-inverse no-padding">
                 <div class="card style-transparent no-padding">
                     <div class="card-body">
                         <div class="form-group row">
-                            <div class="col-xs-1">
-                                <i class="force-padding zmdi zmdi-arrow-back col-xs-1"></i>
-                            </div>
-                            <i class="force-padding col-xs-1 zmdi zmdi-dot-circle text-center"></i>
-                            <div class="col-xs-8">
+                            <i class="force-padding col-xs-2 zmdi zmdi-dot-circle text-center"></i>
+                            <div class="col-xs-10">
                                 <input type="text" class="form-control" id="from" placeholder="From">
                             </div>
-                            <div class="col-xs-1">
-                                <a href="creat-ride-details.html"><i class="force-padding zmdi zmdi-arrow-forward"></i></a>
-                            </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-xs-1">
-
-                            </div>
-                            <i class="force-padding col-xs-1 zmdi zmdi-pin text-center"></i>
-                            <div class="col-xs-8">
+                            <i class="force-padding col-xs-2 zmdi zmdi-pin text-center"></i>
+                            <div class="col-xs-10">
                                 <input type="text" class="form-control" id="to" placeholder="To">
-                            </div>
-                            <div class="col-xs-1">
-
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-xs-1">
-
-                            </div>
-                            <i class="force-padding col-xs-1 zmdi zmdi-trending-up text-center"></i>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="waypoints" placeholder="Waypoints">
-                            </div>
-                            <div class="col-xs-1">
-
                             </div>
                         </div>
                     </div><!--end .card-body -->
@@ -90,7 +94,7 @@
 <!-- Put App.js last in your javascript imports -->
 <script src="../assets/js/core/source/App.min.js"></script>
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVBx2TvFApctna4yOpv6fr6nE7AhIg7eo&libraries=places&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaRBB4-Mi-5p3_MSmSsjR2BuLAwsjeG6Q&libraries=places&callback=initMap">
 </script>
 <script>
     function initMap() {
@@ -134,6 +138,18 @@
             }
         });
     }
+</script>
+<script>
+    $(document).ready(function () {
+        $("#forward").click(function () {
+            var $from=$('#from');
+            var $to=$('#to');
+            localStorage.rider_from=$from.val();
+            localStorage.rider_to=$to.val();
+            window.location.href="creat-ride-details.html";
+        });
+
+    });
 </script>
 </body>
 </html>

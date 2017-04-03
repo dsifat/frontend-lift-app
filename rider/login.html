@@ -11,11 +11,11 @@
 
     <!-- BEGIN STYLESHEETS -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,600,700,800' rel='stylesheet' type='text/css'/>
-    <link type="text/css" rel="stylesheet" href="assets/css/theme-2/bootstrap.css" />
-    <link type="text/css" rel="stylesheet" href="assets/css/theme-2/materialadmin.css" />
-    <link type="text/css" rel="stylesheet" href="assets/css/theme-2/material-design-iconic-font.min.css" /> <!--Material Design Iconic Font-->
+    <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/bootstrap.css" />
+    <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/materialadmin.css" />
+    <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/material-design-iconic-font.min.css" /> <!--Material Design Iconic Font-->
     <!-- Additional CSS includes -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 
 </head>
 <body>
@@ -64,14 +64,13 @@
 </div>
 
 <!-- BEGIN JAVASCRIPT -->
-<script src="assets/js/libs/jquery/jquery-1.11.2.min.js"></script>
-<script src="assets/js/libs/jquery/jquery-migrate-1.2.1.min.js"></script>
-<script src="assets/js/libs/bootstrap/bootstrap.min.js"></script>
+<script src="../assets/js/libs/jquery/jquery-1.11.2.min.js"></script>
+<script src="../assets/js/libs/jquery/jquery-migrate-1.2.1.min.js"></script>
+<script src="../assets/js/libs/bootstrap/bootstrap.min.js"></script>
 
 <script>
     $(document).ready(function () {
         var $username=$("#username");
-
         var $password=$("#password");
 
         $('#login').click(function () {
@@ -91,8 +90,15 @@
                             }
                             else {
                                 console.log(response.username);
-                                localStorage.username=response.username;
-                                window.location.href='choice.html';
+                                localStorage.rider_username=response.username;
+                                localStorage.rider_id=response.id;
+                                if(localStorage.ride_lock==1){
+                                    window.location.href='give-ride.html';
+                                }
+                                else {
+                                    localStorage.ride_lock=0;
+                                    window.location.href='create-ride.html';
+                                }
                             }
                         }
                     }
