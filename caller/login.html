@@ -90,9 +90,15 @@
                             }
                             else {
                                 console.log(response.username);
-                                localStorage.username=response.username;
-                                localStorage.id=response.id;
-                                window.location.href='take-ride.html';
+                                localStorage.caller_username=response.username;
+                                localStorage.caller_id=response.id;
+                                if(localStorage.request_lock==1){
+                                    window.location.href='ride-list.html';
+                                }
+                                else {
+                                    localStorage.request_lock=0;
+                                    window.location.href='take-ride.html';
+                                }
                             }
                         }
                     }
