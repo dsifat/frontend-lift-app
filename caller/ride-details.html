@@ -52,12 +52,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="clearfix">
-                                        <div class="col-xs-12 text-lg text-medium">
-                                            <span class="zmdi zmdi-phone"></span> &nbsp;+8801676048385
-                                        </div>
-                                    </div>
                                 </div><!--end .hbox-column -->
+                            </div>
+                            <div class="card-actionbar no-padding">
+                                <div class="card-actionbar-row no-margin">
+                                    <button class="btn btn-block btn-primary-dark"> Call Now</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -70,26 +70,26 @@
                                     <li class="tile">
                                         <a class="tile-content ink-reaction">
                                             <div class="tile-text">
-                                                Banasree-Uttara
+                                                <span id="ride-from">Banasree</span>- <span id="ride-to">Uttara</span>
                                                 <small>From-To</small>
                                             </div>
                                         </a>
                                     </li>
+                                    <!--<li class="tile">-->
+                                        <!--<a class="tile-content ink-reaction">-->
+                                            <!--<div class="tile-text">-->
+                                                <!--Link Road, Nadda, Kuril-->
+                                                <!--<small>Waypoints / View Full Map</small>-->
+                                            <!--</div>-->
+                                            <!--<a data-toggle="modal" data-target="#textModal" class="btn btn-flat btn-success ink-reaction">-->
+                                                <!--<i class="zmdi zmdi-hc-2x zmdi-directions"></i>-->
+                                            <!--</a>-->
+                                        <!--</a>-->
+                                    <!--</li>-->
                                     <li class="tile">
                                         <a class="tile-content ink-reaction">
                                             <div class="tile-text">
-                                                Link Road, Nadda, Kuril
-                                                <small>Waypoints / View Full Map</small>
-                                            </div>
-                                            <a data-toggle="modal" data-target="#textModal" class="btn btn-flat btn-success ink-reaction">
-                                                <i class="zmdi zmdi-hc-2x zmdi-directions"></i>
-                                            </a>
-                                        </a>
-                                    </li>
-                                    <li class="tile">
-                                        <a class="tile-content ink-reaction">
-                                            <div class="tile-text">
-                                                4 Out Of 6 Avaulable
+                                                <span id="avail">4</span> Out Of <span id="total">6</span> Avaulable
                                                 <small>Seats</small>
                                             </div>
                                         </a>
@@ -97,8 +97,25 @@
                                     <li class="tile">
                                         <a class="tile-content ink-reaction">
                                             <div class="tile-text">
+                                                <span id="price"></span>
+                                                <small>Price</small>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <li class="tile">
+                                        <a class="tile-content ink-reaction">
+                                            <div class="tile-text">
                                                 12th May, 2016 05:36 PM
                                                 <small>Departure</small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="tile">
+                                        <a class="tile-content ink-reaction">
+                                            <div class="tile-text">
+                                                <span id="carname"></span>
+                                                <small>Car Name</small>
                                             </div>
                                         </a>
                                     </li>
@@ -130,14 +147,12 @@
             <div class="section-action" style="left:0 !important;">
                 <div class="section-action-row">
                     <div class="btn-group btn-group-justified " role="group" aria-label="Justified button group">
-                        <a onclick="goBack()" class="btn btn-flat" role="button">Back</a>
-                        <a href="ride-list.html" class="btn btn-flat" role="button">Stalk</a>
-                        <a href="ride-list.html" class="btn btn-flat" role="button">Request</a>
+                        <a onclick="goBack()" class="btn btn-flat btn-primary" role="button">Back</a>
+                        <a href="ride-list.html" class="btn btn-flat btn-accent" id="request" role="button">Request</a>
                     </div>
                 </div>
             </div>
         </section>
-        <div id="map-canvas"></div>
     </div>
 </div>
 
@@ -150,54 +165,43 @@
 <script src="../assets/js/core/source/App.js"></script>
 <script src="../assets/js/core/source/AppVendor.js"></script>
 <script src="../assets/js/core/demo/Demo.js"></script>
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaRBB4-Mi-5p3_MSmSsjR2BuLAwsjeG6Q&libraries=places&callback=initMap">
-</script>
 
-<script>
-    function initMap() {
-        var directionsService = new google.maps.DirectionsService;
-        var directionsDisplay = new google.maps.DirectionsRenderer;
-        var map = new google.maps.Map(document.getElementById('map-canvas'), {
-            zoom: 10,
-            center: {lat: 23.8103, lng: 90.4125}
-        });
-        directionsDisplay.setMap(map);
-
-        var onChangeHandler = function() {
-            calculateAndDisplayRoute(directionsService, directionsDisplay);
-        };
-
-
-        $(document).ready(onChangeHandler());
-    }
-
-    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-        directionsService.route({
-            origin: "Uttara",
-            destination: "Banasree",
-            travelMode: 'DRIVING'
-        }, function(response, status) {
-            if (status === 'OK') {
-                directionsDisplay.setDirections(response);
-            } else {
-//                window.alert('Directions request failed due to ' + status);
-            }
-        });
-    }
-</script>
 <script>
     $(document).ready(function () {
-        ride_id=sessionStorage.ride_id;
         $.ajax({
             type:"GET",
-            url:"http://127.0.0.1:5000/ride-details/",
-            data:{ride_id:8},
+            url:"http://shyori.xcgstudio.com/ride-details/",
+            data:{ride_id:sessionStorage.ride_id},
             dataType:'json',
             crossDomain:true,
             jsonpCallback: 'callback',
             success:function (response) {
-                ride=response.ride;
+                var ride=response.ride;
+                console.log(ride);
+                $('#driver-name').text(ride[0][8]);
+                $('#ride-from').text(ride[0][1].substring(0,ride[0][1].indexOf(',')));
+                $('#ride-to').text(ride[0][2].substring(0,ride[0][2].indexOf(',')));
+                $('#total').text(ride[0][4]);
+                $('#avail').text(ride[0][5]);
+                $('#carname').text(ride[0][3]);
+                $('#price').text(ride[0][6]);
+            }
+        });
+    });
+    $('#request').click(function () {
+        $.ajax({
+            type:"GET",
+            url:'http://shyori.xcgstudio.com/ride-request/',
+            data:{ride_id:sessionStorage.ride_id,user_id:localStorage.caller_id},
+            dataType:'json',
+            crossDomain:true,
+            jsonpCallback: 'callback',
+            success:function (response) {
+                if(response){
+                    window.location.href="confirmed-rides.html";
+                    localStorage.request_lock=1;
+
+                }
             }
         });
     });

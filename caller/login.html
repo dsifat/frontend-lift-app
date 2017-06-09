@@ -74,26 +74,25 @@
         var $password=$("#password");
 
         $('#login').click(function () {
-
             $.ajax(
                     {
                         type:'GET',
-                        url:'http://127.0.0.1:5000/login/',
+                        url:'http://shyori.xcgstudio.com/caller-login/',
                         data:{username:$username.val(),password:$password.val()},
                         dataType:'json',
                         crossDomain:true,
                         jsonpCallback: 'callback',
                         success:function (response){
-                            console.log(response);
                             if (response.username===null){
-                                $("#error-message").append('<div class="alert alert-danger" role="alert"><strong>Hi!</strong>You entered wrong username or password.Please try again later</div>');
+                                $("#error-message").append('<div class="alert alert-danger" role="alert"><strong>Hi! </strong>You entered wrong username or password.Please try again later</div>');
                             }
                             else {
                                 console.log(response.username);
                                 localStorage.caller_username=response.username;
                                 localStorage.caller_id=response.id;
+                                localStorage.request_lock=response.request_count[0][0];
                                 if(localStorage.request_lock==1){
-                                    window.location.href='ride-list.html';
+                                    window.location.href='confirmed-rides.html';
                                 }
                                 else {
                                     localStorage.request_lock=0;

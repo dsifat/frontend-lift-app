@@ -13,13 +13,15 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,600,700,800' rel='stylesheet' type='text/css'/>
     <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/bootstrap.css"/>
     <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/materialadmin.css"/>
+    <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/libs/toogle-switch/ToggleSwitch.css"/>
+    <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/libs/jquery-ui/jquery-ui-theme.css"/>
     <!--Font Awesome Icon Font-->
     <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/material-design-iconic-font.min.css"/>
     <!--Material Design Iconic Font-->
     <!-- Additional CSS includes -->
 
 </head>
-<body class="header-fixed menubar-hoverable menubar-pin">
+<body class="header-fixed menubar-hoverable menubar-pin full-content">
 <header id="header">
     <div class="headerbar">
         <div class="headerbar-left col-sm-12">
@@ -44,21 +46,151 @@
     <div class="offcanvas">
     </div>
     <div id="content">
-        <section class="no-padding" id="rides">
+        <section class="has-actions" >
+            <div class="section-body">
+                <div class="row">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <ul class="list">
+                                    <li class="tile">
+                                        <div class="tile-content">
+                                            <div class="tile-text">
+                                                Start This Ride
+                                            </div>
+                                            <div class="tile-icon">
+                                                <input type="checkbox" name="switch" id="switch">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="tile">
+                                        <div class="tile-content">
+                                            <div class="tile-text">
+                                                Available Seats
+                                            </div>
+                                            <div class="tile-icon">
+                                                <input type="text" class="form-control" id="spinner" value="">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="tile">
+                                        <div class="tile-content">
+                                            <div class="tile-text">
+                                                Ride Completed
+                                            </div>
+                                            <div class="tile-icon">
+                                                <input type="checkbox" name="switch" id="switch1">
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 hbox-xs">
+                        <div class="card">
+                            <div class="card-body no-padding">
+                                <ul class="list divider-full-bleed">
+                                    <li class="tile">
+                                        <a class="tile-content ink-reaction">
+                                            <div class="tile-text">
+                                                <span id="ride-from">Banasree</span> --- <span id="ride-to">Uttara</span>
+                                                <small>From-To</small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!--<li class="tile">-->
+                                    <!--<a class="tile-content ink-reaction">-->
+                                    <!--<div class="tile-text">-->
+                                    <!--Link Road, Nadda, Kuril-->
+                                    <!--<small>Waypoints / View Full Map</small>-->
+                                    <!--</div>-->
+                                    <!--<a data-toggle="modal" data-target="#textModal" class="btn btn-flat btn-success ink-reaction">-->
+                                    <!--<i class="zmdi zmdi-hc-2x zmdi-directions"></i>-->
+                                    <!--</a>-->
+                                    <!--</a>-->
+                                    <!--</li>-->
+                                    <li class="tile">
+                                        <a class="tile-content ink-reaction">
+                                            <div class="tile-text">
+                                                <span id="avail">4</span> Out Of <span id="total">6</span> Avaulable
+                                                <small>Seats</small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="tile">
+                                        <a class="tile-content ink-reaction">
+                                            <div class="tile-text">
+                                                <span id="price"></span>
+                                                <small>Price</small>
+                                            </div>
+                                        </a>
+                                    </li>
 
+                                    <li class="tile">
+                                        <a class="tile-content ink-reaction">
+                                            <div class="tile-text">
+                                                12th May, 2016 05:36 PM
+                                                <small>Departure</small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="tile">
+                                        <a class="tile-content ink-reaction">
+                                            <div class="tile-text">
+                                                <span id="carname"></span>
+                                                <small>Car Name</small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!--<li class="tile">-->
+                                        <!--<a class="tile-content ink-reaction">-->
+                                            <!--<div class="tile-text">-->
+                                                <!--Only Man-->
+                                                <!--<small>Gender</small>-->
+                                            <!--</div>-->
+                                        <!--</a>-->
+                                    <!--</li>-->
+                                    <li class="tile">
+                                        <a class="tile-content ink-reaction">
+                                            <div class="tile-text">
+                                                Yes
+                                                <small>A/C</small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </div><!--end .card-body -->
+                        </div><!--end .card -->
+
+                    </div>
+                </div>
+            </div>
+            <!--<div class="section-action">-->
+                <!--<div class="section-action-row">-->
+                    <!--<div class="btn-group btn-group-justified " role="group" aria-label="Justified button group">-->
+                        <!--<a href="give-ride.html" class="btn btn-flat" role="button">Delete</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
         </section>
         <section class="full-content" id="action-bar">
-            <div class=" section-action style-transparent" style="box-shadow: none !important;-webkit-box-shadow: none !important;">
-                <div class="section-floating-action-row" id="new-button">
-                    <a style="background-color: deeppink;color: white" class="btn ink-reaction btn-floating-action" href="create-ride.html" data-toggle="tooltip" data-placement="top" data-original-title="New Ride">
+            <div class="section-action style-transparent" style="box-shadow: none !important;-webkit-box-shadow: none !important;">
+                <div class="section-floating-action-row">
+                    <a id="new-button" style="background-color: deeppink;color: white" class="btn ink-reaction btn-floating-action" href="create-ride.html" data-toggle="tooltip" data-placement="top" data-original-title="New Ride">
                         <i class="zmdi zmdi-plus"></i>
+                    </a>
+                    <a id="delete-button" style="background-color: orangered;color: white" class="btn ink-reaction btn-floating-action" href="create-ride.html" data-toggle="tooltip" data-placement="top" data-original-title="Delete Ride">
+                        <i class="zmdi zmdi-minus"></i>
                     </a>
                 </div>
             </div>
         </section>
     </div>
     <div id="menubar">
-
         <div class="nano has-scrollbar">
             <div class="nano-content" tabindex="0" style="right: -15px;">
                 <div class="menubar-scroll-panel">
@@ -74,21 +206,21 @@
                                 <div class="gui-icon">
                                     <i class="zmdi zmdi-receipt"></i>
                                 </div>
-                                <span class="title">Requests Received<span class="badge style-danger">4</span></span>
+                                <span class="title">Requests Received<span class="badge style-danger"></span></span>
                             </a>
                         </li>
-                        <li class="">
-                            <a href="#">
-                                <div class="gui-icon"><i class="zmdi zmdi-mail-send"></i></div>
-                                <span class="title">Requests Sent</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="#">
-                                <div class="gui-icon"><i class="zmdi zmdi-notifications"></i></div>
-                                <span class="title">Notifications<span class="badge style-danger">3</span></span>
-                            </a>
-                        </li>
+                        <!--<li class="">-->
+                            <!--<a href="#">-->
+                                <!--<div class="gui-icon"><i class="zmdi zmdi-mail-send"></i></div>-->
+                                <!--<span class="title">Requests Sent</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <!--<li class="">-->
+                            <!--<a href="#">-->
+                                <!--<div class="gui-icon"><i class="zmdi zmdi-notifications"></i></div>-->
+                                <!--<span class="title">Notifications<span class="badge style-danger"></span></span>-->
+                            <!--</a>-->
+                        <!--</li>-->
                     </ul>
                     <div class="menubar-foot-panel">
                         <ul id="" class="gui-controls gui-controls-tree">
@@ -99,9 +231,9 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="../index.html">
                                     <div class="gui-icon"><i class="zmdi zmdi-long-arrow-return"></i></div>
-                                    <a class="title" onclick="localStorage.clear();">Log Out</a>
+                                    <span class="title" onclick="localStorage.clear();">Log Out</span>
                                 </a>
                             </li>
 
@@ -120,52 +252,58 @@
 <!-- BEGIN JAVASCRIPT -->
 <script src="../assets/js/libs/jquery/jquery-1.11.2.min.js"></script>
 <script src="../assets/js/libs/jquery/jquery-migrate-1.2.1.min.js"></script>
-<script src="../assets/js/core/source/App.min.js"></script>
+<script src="../assets/js/libs/jquery-ui/jquery-ui.min.js"></script>
 <script src="../assets/js/libs/bootstrap/bootstrap.min.js"></script>
 <script src="../assets/js/libs/nanoscroller/jquery.nanoscroller.min.js"></script>
 <script src="../assets/js/core/source/App.js"></script>
-<script src="../assets/js/core/source/App.min.js"></script>
+<script src="../assets/js/core/source/AppVendor.js"></script>
 <script src="../assets/js/core/source/AppNavigation.js"></script>
+<script src="../assets/js/libs/toogle-switch/ToggleSwitch.js"></script>
+<script src="../assets/js/core/demo/Demo.js"></script>
+<script src="../assets/js/core/demo/DemoFormComponents.js"></script>
 <!-- END JAVASCRIPT -->
 <script>
     $(document).ready(function () {
         if(localStorage.ride_lock==1){
-            $('#action-bar').remove();
+            $('#new-button').remove();
+        }
+        else {
+            $('#delete-button').remove();
         }
         $.ajax({
             type:"GET",
-            url:'http://localhost:5000/own-ride/',
+            url:'http://shyori.xcgstudio.com/own-ride/',
             data:{id:localStorage.rider_id},
             dataType:'json',
             crossDomain:true,
             jsonpCallback: 'callback',
             success: function (response) {
-                var rides=response.ride;
-                localStorage.rider_ride_id=rides[0][0];
-                ride_from=localStorage.rider_from;
-                ride_to=localStorage.rider_to;
-                ride_from=ride_from.substring(0,ride_from.indexOf(','));
-                ride_to=ride_to.substring(0,ride_to.indexOf(','));
-                for(var i in rides){
-                    $('#rides').append(
-                            '<a href="ride-details.html">\
-                                    <div class="col-xs-12 no-padding">\
-                                    <div class="card" style="">\
-                                    <div class="card-body style-info">\
-                                    <div class="col-xs-9">\
-                                    <strong>'+ride_from+'-'+ride_to+'</strong><br>\
-                                    <small class="text-xs">'+localStorage.rider_username+'</small>\
-                                    </div>\
-                                    <div class="col-xs-3">\
-                                    <small class="text-sm">'+rides[i][6]+' BDT</small><br>\
-                                    <small class="text-sm">'+rides[i][5]+' Seats</small>\
-                                </div>\
-                                </div>\
-                                <!--end .card-body -->\
-                                </div><!--end .card -->\
-                                </div>'
-                    );
-                }
+                var ride=response.ride;
+                console.log(response.ride[0][0]);
+                localStorage.rider_from=ride[0][1];
+                localStorage.rider_to=ride[0][2];
+                localStorage.rider_ride_id=ride[0][0];
+                $('#ride-from').text(ride[0][1].substring(0,ride[0][1].indexOf(',')));
+                $('#ride-to').text(ride[0][2].substring(0,ride[0][2].indexOf(',')));
+                $('#total').text(ride[0][4]);
+                $('#avail').text(ride[0][5]);
+                $('#spinner').attr("value",ride[0][5]);
+                $('#carname').text(ride[0][3]);
+                $('#price').text(ride[0][6]);
+            }
+        });
+    });
+    $('#delete-button').click(function () {
+        $.ajax({
+            type:"GET",
+            url:'http://shyori.xcgstudio.com/delete-ride/',
+            data:{ride_id:localStorage.rider_ride_id},
+            dataType:'json',
+            crossDomain:true,
+            jsonpCallback: 'callback',
+            success: function (response) {
+                localStorage.ride_lock=0;
+                window.location.href="create-ride.html";
             }
         });
     });

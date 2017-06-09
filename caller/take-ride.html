@@ -23,48 +23,37 @@
     <script src="../assets/js/libs/nanoscroller/jquery.nanoscroller.min.js"></script>
     <script src="../assets/js/core/source/App.js"></script>
     <script src="../assets/js/core/source/AppNavigation.js"></script>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVBx2TvFApctna4yOpv6fr6nE7AhIg7eo&libraries=places&callback=initMap">
-    </script>
 
-    <script>
-        function initMap() {
-            var directionsService = new google.maps.DirectionsService;
-            var directionsDisplay = new google.maps.DirectionsRenderer;
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 10,
-                center: {lat: 23.8103, lng: 90.4125}
-            });
-            directionsDisplay.setMap(map);
 
-            var onChangeHandler = function() {
-                calculateAndDisplayRoute(directionsService, directionsDisplay);
-            };
-            var from = document.getElementById('from');
-            var searchFrom = new google.maps.places.SearchBox(from);
-            var to = document.getElementById('to');
-            var searchTo = new google.maps.places.SearchBox(to);
 
-            document.getElementById('from').addEventListener('change', onChangeHandler);
-            document.getElementById('to').addEventListener('change', onChangeHandler);
-        }
-
-        function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-            directionsService.route({
-                origin: document.getElementById('from').value,
-                destination: document.getElementById('to').value,
-                travelMode: 'DRIVING'
-            }, function(response, status) {
-                if (status === 'OK') {
-                    directionsDisplay.setDirections(response);
-                } else {
-//                window.alert('Directions request failed due to ' + status);
-                }
-            });
-        }
-    </script>
 </head>
-<body class="">
+<body class="header-fixed menubar-hoverable menubar-pin">
+<header id="header">
+    <div class="headerbar">
+        <div class="headerbar-left col-xs-12">
+            <ul class="header-nav header-nav-options">
+                <li class="col-xs-2">
+                    <a class="btn btn-icon-toggle menubar-toggle" data-toggle="menubar" href="javascript:void(0);">
+                        <i class="zmdi zmdi-arrow-back" onclick="goBack();"></i>
+                    </a>
+                </li>
+                <li class="header-nav-brand col-xs-6">
+                    <div class="brand-holder">
+                        <a href="../choice.html">
+                            <span class="text-lg text-bold">Shyori</span>
+                        </a>
+                    </div>
+                </li>
+                <li class="col-xs-2 pull-right btn-filter">
+                    <a class="btn btn-icon-toggle" data-toggle="">
+                        <i id="forward" class="zmdi zmdi-arrow-forward"></i>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</header>
 <div id="base" class="no-padding">
     <div id="content" class="col-xs-12 no-padding">
         <section class="no-padding">
@@ -73,35 +62,21 @@
                 <div class="card style-transparent no-padding">
                     <div class="card-body no-padding">
                         <div class="form-group row">
-                            <div class="col-xs-2">
-                                <a href="ride-list.html"><i class="force-padding zmdi zmdi-arrow-back"></i></a>
-                            </div>
-                            <div class="force-padding col-xs-1 zmdi zmdi-dot-circle text-center text-accent-dark"></div>
-                            <div class="col-xs-7">
+                            <div class="force-padding col-xs-2 zmdi zmdi-dot-circle text-center text-accent-dark"></div>
+                            <div class="col-xs-8">
                                 <input id="from" type="search" class="form-control"  placeholder="From">
                             </div>
-                            <div class="col-xs-1 pull-right">
-                                <a href="ride-list.html"><i class="force-padding zmdi zmdi-arrow-forward pull-right" id="forward"></i></a>
-                            </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-xs-2">
-                            </div>
-                            <i class="force-padding col-xs-1 zmdi zmdi-pin text-center text-primary-dark"></i>
-                            <div class="col-xs-7">
+                            <i class="force-padding col-xs-2 zmdi zmdi-pin text-center text-primary-dark"></i>
+                            <div class="col-xs-8">
                                 <input type="search" class="form-control" id="to" placeholder="To">
                             </div>
-                            <div class="col-xs-1 pull-right">
-                            </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-xs-2">
-                            </div>
-                            <i class="force-padding col-xs-1 zmdi zmdi-watch text-center text-warning"></i>
-                            <div class="col-xs-7">
+                            <i class="force-padding col-xs-2 zmdi zmdi-watch text-center text-warning"></i>
+                            <div class="col-xs-8">
                                 <input type="datetime-local" class="form-control" id="date-time" placeholder="Date/Time">
-                            </div>
-                            <div class="col-xs-1 pull-right">
                             </div>
                         </div>
                     </div><!--end .card-body -->
@@ -168,11 +143,13 @@
 </script>
 
 <script>
-    $(document).ready(function () {
-        $('#forward').click(function () {
-            localStorage.caller_from=$('#from').val();
-            localStorage.rider_from=$('#to').val();
-        });
+    $('#forward').click(function () {
+        localStorage.caller_from=$('#from').val();
+        localStorage.caller_to=$('#to').val();
+        if (localStorage.caller_from !="" && localStorage.caller_to !=""){
+            window.location.href="ride-list.html";
+        }
+
     });
 </script>
 

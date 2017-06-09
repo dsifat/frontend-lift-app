@@ -10,7 +10,6 @@
     <meta name="description" content="Short explanation about this website">
 
     <!-- BEGIN STYLESHEETS -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,600,700,800' rel='stylesheet' type='text/css'/>
     <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/materialadmin.css" />
     <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/material-design-iconic-font.min.css" /> <!--Material Design Iconic Font-->
@@ -78,20 +77,19 @@
             $.ajax(
                     {
                         type:'GET',
-                        url:'http://127.0.0.1:5000/login/',
+                        url:'http://shyori.xcgstudio.com/rider-login/',
                         data:{username:$username.val(),password:$password.val()},
                         dataType:'json',
                         crossDomain:true,
                         jsonpCallback: 'callback',
                         success:function (response){
-                            console.log(response);
                             if (response.username===null){
-                                $("#error-message").append('<div class="alert alert-danger" role="alert"><strong>Hi!</strong>You entered wrong username or password.Please try again later</div>');
+                                $("#error-message").append('<div class="alert alert-danger" role="alert"><strong>Hi! </strong>You entered wrong username or password.Please try again later</div>');
                             }
                             else {
-                                console.log(response.username);
                                 localStorage.rider_username=response.username;
                                 localStorage.rider_id=response.id;
+                                localStorage.ride_lock=response.ride_count[0][0];
                                 if(localStorage.ride_lock==1){
                                     window.location.href='give-ride.html';
                                 }

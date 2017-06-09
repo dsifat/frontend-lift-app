@@ -79,21 +79,21 @@
                                 <div class="gui-icon">
                                     <i class="zmdi zmdi-receipt"></i>
                                 </div>
-                                <span class="title">Requests Received<span class="badge style-danger" id="noti"></span></span>
+                                <span class="title">Requests Received<span class="badge style-danger">i</span></span>
                             </a>
                         </li>
-                        <li class="">
-                            <a href="#">
-                                <div class="gui-icon"><i class="zmdi zmdi-mail-send"></i></div>
-                                <span class="title">Requests Sent</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="#">
-                                <div class="gui-icon"><i class="zmdi zmdi-notifications"></i></div>
-                                <span class="title">Notifications<span class="badge style-danger"></span></span>
-                            </a>
-                        </li>
+                        <!--<li class="">-->
+                            <!--<a href="#">-->
+                                <!--<div class="gui-icon"><i class="zmdi zmdi-mail-send"></i></div>-->
+                                <!--<span class="title">Requests Sent</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <!--<li class="">-->
+                            <!--<a href="#">-->
+                                <!--<div class="gui-icon"><i class="zmdi zmdi-notifications"></i></div>-->
+                                <!--<span class="title">Notifications<span class="badge style-danger"></span></span>-->
+                            <!--</a>-->
+                        <!--</li>-->
                     </ul>
                     <div class="menubar-foot-panel">
                         <ul id="" class="gui-controls gui-controls-tree">
@@ -104,9 +104,9 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="../index.html">
                                     <div class="gui-icon"><i class="zmdi zmdi-long-arrow-return"></i></div>
-                                    <span class="title">Log Out</span>
+                                    <span class="title" onclick="localStorage.clear();">Log Out</span>
                                 </a>
                             </li>
 
@@ -131,53 +131,81 @@
 <script src="../assets/js/core/demo/Demo.js"></script>
 <script>
     $(document).ready(function () {
-        setInterval(function () {
+        var ajaxCall=function () {
             $.ajax({
-                type:"GET",
-                url:'http://localhost:5000/request-receive/',
-                data:{ride_id:localStorage.rider_ride_id},
-                dataType:'json',
-                crossDomain:true,
+                type: "GET",
+                url: 'http://shyori.xcgstudio.com/request-receive/',
+                data: {ride_id: localStorage.rider_ride_id},
+                dataType: 'json',
+                crossDomain: true,
                 jsonpCallback: 'callback',
-                success:function (response) {
-                    var requests=response.requests;
-                    ride_from=localStorage.rider_from;
-                    ride_to=localStorage.rider_to;
-                    ride_from=ride_from.substring(0,ride_from.indexOf(','));
-                    ride_to=ride_to.substring(0,ride_to.indexOf(','));
-                    var noti=0;
-                    for(var i in requests) {
+                success: function (response) {
+                    var requests = response.requests;
+                    ride_from = localStorage.rider_from;
+                    ride_to = localStorage.rider_to;
+                    ride_from = ride_from.substring(0, ride_from.indexOf(','));
+                    ride_to = ride_to.substring(0, ride_to.indexOf(','));
+                    var noti = 0;
+                    for (var i in requests) {
                         $('#content').html(
-                                '<section class="no-padding">\
+                                '<section class="no-padding request" id="request-' + requests[i][0] + '">\
                                     <div class="section-body">\
                                     <div class="card">\
                                     <div class="card-body text-default">\
-                                    <span><a href="" class="text-accent">'+requests[i][0]+'</a> requested for your ride <a href=""\
-                                        class="text-accent">'+ride_from+'-'+ride_to+'</a></span><br>\
+                                    <span><a href="" class="text-accent">' + requests[i][5] + '</a> requested for your ride <a href=""\
+                                        class="text-accent">' + ride_from + '-' + ride_to + '</a></span><br>\
                                     <small class="opacity-50">5:10 pm</small>\
                                 </div><!--end .card-body -->\
                                 <div class="card-actionbar style-default no-padding">\
                                 <div class="card-actionbar-row no-margin">\
-                                    <a href="give-ride.html" class="btn btn-flat btn-danger"><span\
+                                    <a id="" class="reject btn btn-flat btn-danger"><span\
                                     class="text-sm">Reject</span></a>\
-                                    <a href="give-ride.html" class="btn btn-flat"><span\
+                                    <a id="" class="accept btn btn-flat"><span\
                                     class="text-sm text-success">Accept</span></a>\
                                 </div>\
                             </div><!--end .card-actionbar -->\
                             </div>\
                             </div>\
                             </section>'
-
                         );
-                        noti=noti+1;
-                        $("#noti").text(noti);
                     }
                 }
             });
-        },2000);
-
-
-
+        }
+        setInterval(ajaxCall,1000);
+    });
+    $('#content').on('click','a.accept',function () {
+        var temp=$('.request').attr('id');
+        console.log(temp);
+        var request_id=parseInt(temp.replace("request-",""));
+        $.ajax({
+            type:"GET",
+            url:'http://shyori.xcgstudio.com/request-accept/',
+            data:{request_id:request_id},
+            dataType:'json',
+            crossDomain:true,
+            jsonpCallback: 'callback',
+            success:function (response) {
+                console.log('#'+temp);
+                $('#'+temp).remove();
+            }
+        });
+    });
+    $('#content').on('click','a.reject',function () {
+        var temp=$('.request').attr('id');
+        console.log(temp);
+        var request_id=parseInt(temp.replace("request-",""));
+        $.ajax({
+            type:"GET",
+            url:'http://shyori.xcgstudio.com/request-reject/',
+            data:{request_id:request_id},
+            dataType:'json',
+            crossDomain:true,
+            jsonpCallback: 'callback',
+            success:function (response) {
+                $('#'+temp).remove();
+            }
+        });
     });
 </script>
 </body>

@@ -70,8 +70,8 @@
         <div class="section-action" style="left:0 !important;">
             <div class="section-action-row">
                 <div class="btn-group btn-group-justified " role="group" aria-label="Justified button group">
-                    <a href="give-ride.html" class="btn btn-flat btn-primary-dark" role="button">Cancel Ride</a>
-                    <a href="give-ride.html" class="btn btn-flat btn-accent-dark" id="create" role="button">Create Ride</a>
+                    <a href="#" class="btn btn-flat btn-primary-dark" role="button">Cancel Ride</a>
+                    <a href="#" class="btn btn-flat btn-accent-dark" id="create" role="button">Create Ride</a>
                 </div>
             </div>
         </div>
@@ -96,21 +96,26 @@
             $rider_id=localStorage.rider_id;
             $from=localStorage.rider_from;
             $to=localStorage.rider_to;
-            $.ajax({
-                type:"GET",
-                url:"http://127.0.0.1:5000/create-ride/",
-                dataType:'json',
-                crossDomain:true,
-                jsonpCallback: 'callback',
-                data:{from:$from,to:$to,total:$total,avail:$avail,carname:$carname,price:$price,rider_id:$rider_id},
-                success:function (response) {
-                    if(response.insertion="successful"){
-                        localStorage.ride_lock=1;
-                        localStorage.rider_ride_id=response.ride_id;
+            if ($price!="" && $total!="" && $avail!=""){
+                $.ajax({
+                    type:"GET",
+                    url:"http://shyori.xcgstudio.com/create-ride/",
+                    dataType:'json',
+                    crossDomain:true,
+                    jsonpCallback: 'callback',
+                    data:{from:$from,to:$to,total:$total,avail:$avail,carname:$carname,price:$price,rider_id:$rider_id,username:localStorage.rider_username},
+                    success:function (response) {
+                        console.log(response.insertion);
+                        if(response.insertion="success"){
+                            localStorage.ride_lock=1;
+                            localStorage.rider_ride_id=response.ride_id;
+                            window.location.href="give-ride.html";
+                        }
                     }
-                }
-            });
-            window.location.href="give-ride.html"
+                });
+            }
+
+
         });
     });
 </script>

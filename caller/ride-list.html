@@ -53,10 +53,6 @@
     <div class="offcanvas">
     </div>
     <div id="content">
-        <section class="no-padding" id="rides">
-
-        </section>
-
         <div class="section-action style-transparent" style="box-shadow: none !important;-webkit-box-shadow: none !important;">
             <div class="section-floating-action-row">
                 <a style="background-color: deeppink;color: white" class="btn ink-reaction btn-floating-action" href="take-ride.html" data-toggle="tooltip" data-placement="top" data-original-title="New Ride">
@@ -82,30 +78,30 @@
                                 <span class="title">Confirmed Rides</span>
                             </a>
                         </li>
-                        <li class="">
-                            <a href="ride-list.html" class="">
-                                <div class="gui-icon"><i class="zmdi zmdi-archive"></i></div>
-                                <span class="title">Pinned Rides</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="requests-ride.html">
-                                <div class="gui-icon">
-                                    <i class="zmdi zmdi-receipt"></i>
-                                </div>
-                                <span class="title">Requests Received<span class="badge style-danger">4</span></span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="sent-rides.html">
-                                <div class="gui-icon"><i class="zmdi zmdi-mail-send"></i></div>
-                                <span class="title">Requests Sent</span>
-                            </a>
-                        </li>
+                        <!--<li class="">-->
+                            <!--<a href="#" class="">-->
+                                <!--<div class="gui-icon"><i class="zmdi zmdi-archive"></i></div>-->
+                                <!--<span class="title">Pinned Rides</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <!--<li class="">-->
+                            <!--<a href="#">-->
+                                <!--<div class="gui-icon">-->
+                                    <!--<i class="zmdi zmdi-receipt"></i>-->
+                                <!--</div>-->
+                                <!--<span class="title">Requests Received<span class="badge style-danger"></span></span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <!--<li class="">-->
+                            <!--<a href="#">-->
+                                <!--<div class="gui-icon"><i class="zmdi zmdi-mail-send"></i></div>-->
+                                <!--<span class="title">Requests Sent</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
                         <li>
                             <a href="notifications.html">
                                 <div class="gui-icon"><i class="zmdi zmdi-notifications"></i></div>
-                                <span class="title">Notifications<span class="badge style-danger">3</span></span>
+                                <span class="title">Notifications<span class="badge style-danger"></span></span>
                             </a>
                         </li>
                     </ul>
@@ -118,9 +114,9 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="../index.html">
                                     <div class="gui-icon"><i class="zmdi zmdi-long-arrow-return"></i></div>
-                                    <span class="title">Log Out</span>
+                                    <span class="title" onclick="localStorage.clear();">Log Out</span>
                                 </a>
                             </li>
 
@@ -138,8 +134,6 @@
 <!-- BEGIN JAVASCRIPT -->
 
 <script src="../assets/js/libs/jquery/jquery-1.11.2.min.js"></script>
-<script src="../assets/js/libs/jquery/jquery-sse.min.js"></script>
-<!--<script src="../assets/js/libs/jquery/jquery-migrate-1.2.1.min.js"></script>-->
 <script src="../assets/js/libs/bootstrap/bootstrap.min.js"></script>
 <script src="../assets/js/libs/nanoscroller/jquery.nanoscroller.min.js"></script>
 <script src="../assets/js/core/source/App.js"></script>
@@ -147,29 +141,30 @@
 <script>
 
         $(document).ready(function () {
-            if(localStorage.request_lock=1){
-                $('#rides').append('Sorry you can not send a ride untill this process is over!');
+            if(localStorage.request_lock==1){
+                $('#content').append('Sorry you can not send a ride untill this process is over!');
+                $('.btn-floating-action').remove();
             }
             else {
                 $.ajax({
                     type: "GET",
-                    url: 'http://127.0.0.1:5000/ride-list/',
+                    url: 'http://shyori.xcgstudio.com/ride-list/',
                     data: {from: localStorage.caller_from, to: localStorage.caller_to},
                     dataType: 'json',
                     crossDomain: true,
                     jsonpCallback: 'callback',
                     success: function (response) {
-                        var rides = response.ride;
-                        console.log(rides);
+                        var rides = response.rides;
+                        console.log(rides[0][0]);
                         for (var i in rides) {
-                            $('#rides').append(
-//                                '<a href="#" id="ride-'+rides[i][0]+'">\
-                                    '<div class="col-xs-12 no-padding">\
-                                            <div class="card" style="" id="ride-' + rides[i][0] + '">\
-                                                <div class="card-body style-info">\
+                            $('#content').append(
+                                '<section class="no-padding">\
+                                    <div class="col-xs-12 no-padding">\
+                                            <div class="card" style="">\
+                                                <div class="card-body style-info" id="ride-'+rides[0][0] +'">\
                                                     <div class="col-xs-9">\
-                                                        <strong>' + rides[i][1] + '-' + rides[i][2] + '</strong><br>\
-                                                        <small class="text-xs">' + localStorage.username + '</small>\
+                                                        <strong>' + rides[i][1].substring(0,rides[i][1].indexOf(',')) + '-' + rides[i][2].substring(0,rides[i][2].indexOf(',')) + '</strong><br>\
+                                                        <small class="text-xs">' + rides[i][8] + '</small>\
                                                     </div>\
                                                     <div class="col-xs-3">\
                                                         <small class="text-sm">' + rides[i][6] + ' BDT</small><br>\
@@ -183,8 +178,8 @@
                                                 </div>\
                                     <!--end .card-body -->\
                                             </div><!--end .card -->\
-                                        </div>'
-//                                </a>'
+                                        </div>\
+                                    </section>'
                             );
                         }
                     }
@@ -192,25 +187,28 @@
             }
         });
 
-        $('#rides').on('click','div.card',function () {
-            temp=$(this).attr('id');
-            ride=parseInt(temp.replace("request-",""));
+        $('#content').on('click','div.card-body',function () {
+            var temp=$(this).attr('id');
+            var ride=parseInt(temp.replace("ride-",""));
             sessionStorage.ride_id=ride;
+            window.location.href="ride-details.html";
         });
-        $('#rides').on('click','a.request',function () {
-            temp=$(this).attr('id');
-            ride=parseInt(temp.replace("request-",""));
+        $('#content').on('click','a.request',function () {
+            var temp=$(this).attr('id');
+            var ride=parseInt(temp.replace("request-",""));
             $.ajax({
                 type:"GET",
-                url:'http://127.0.0.1:5000/ride-request/',
-                data:{ride_id:ride,user_id:localStorage.id},
+                url:'http://shyori.xcgstudio.com/ride-request/',
+                data:{ride_id:ride,user_id:localStorage.caller_id,username:localStorage.caller_username},
                 dataType:'json',
                 crossDomain:true,
                 jsonpCallback: 'callback',
                 success:function (response) {
-                    if(response){
+                    if(response.insertion!="failure"){
                         window.location.href="confirmed-rides.html";
                         localStorage.request_lock=1;
+                        localStorage.requested_id=response.insertion;
+                        localStorage.caller_ride_id=ride;
                     }
                 }
             });

@@ -52,24 +52,128 @@
     <div class="offcanvas">
     </div>
     <div id="content">
-        <section class="no-padding">
-            <a href="confirmed-rides-details.html">
-                <div class="col-xs-12 no-padding">
-                    <div class="card" style="">
-                        <div class="card-body style-info">
-                            <div class="col-xs-9">
-                                <strong>BANASREE-UTTARA</strong><br>
-                                <small class="text-xs">Tahsan Khan in 25/07/2017 06:40 PM</small>
+        <section class="has-actions" style="display: none">
+            <div class="section-body">
+                <div class="row">
+                    <div class="col-xs-12 hbox-xs">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="hbox-column width-2">
+                                    <img class="img-circle img-responsive pull-left" src="../assets/img/avatar1.jpg"
+                                         alt="">
+                                </div><!--end .hbox-column -->
+                                <div class="hbox-column v-top">
+                                    <div class="clearfix">
+                                        <div class="col-xs-12">
+                                            <a class="text-lg text-medium" href="../profile.html" id="driver-name"></a>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix margin-bottom-lg">
+                                        <div class="col-xs-12">
+                                            <div class="star-rating">
+                                                <input type="number" name="rating" class="rating" value="3"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!--end .hbox-column -->
                             </div>
-                            <div class="col-xs-3">
-                                <small class="text-sm">50 BDT</small><br>
-                                <small class="text-sm">3 Seats</small>
+                            <div class="card-actionbar no-padding">
+                                <div class="card-actionbar-row no-margin">
+                                    <a href="tel:123456" class="btn btn-block btn-primary-dark"> Call Now</a>
+                                </div>
                             </div>
                         </div>
-                        <!--end .card-body -->
-                    </div><!--end .card -->
+                    </div>
                 </div>
-            </a>
+                <div class="row">
+                    <div class="col-xs-12 hbox-xs">
+                        <div class="card">
+                            <div class="card-body no-padding">
+                                <ul class="list divider-full-bleed">
+                                    <li class="tile">
+                                        <a class="tile-content ink-reaction">
+                                            <div class="tile-text">
+                                                <span id="ride-from">Banasree</span>- <span id="ride-to">Uttara</span>
+                                                <small>From-To</small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!--<li class="tile">-->
+                                    <!--<a class="tile-content ink-reaction">-->
+                                    <!--<div class="tile-text">-->
+                                    <!--Link Road, Nadda, Kuril-->
+                                    <!--<small>Waypoints / View Full Map</small>-->
+                                    <!--</div>-->
+                                    <!--<a data-toggle="modal" data-target="#textModal" class="btn btn-flat btn-success ink-reaction">-->
+                                    <!--<i class="zmdi zmdi-hc-2x zmdi-directions"></i>-->
+                                    <!--</a>-->
+                                    <!--</a>-->
+                                    <!--</li>-->
+                                    <li class="tile">
+                                        <a class="tile-content ink-reaction">
+                                            <div class="tile-text">
+                                                <span id="avail">4</span> Out Of <span id="total">6</span> Avaulable
+                                                <small>Seats</small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="tile">
+                                        <a class="tile-content ink-reaction">
+                                            <div class="tile-text">
+                                                <span id="price"></span>
+                                                <small>Price</small>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <li class="tile">
+                                        <a class="tile-content ink-reaction">
+                                            <div class="tile-text">
+                                                12th May, 2016 05:36 PM
+                                                <small>Departure</small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="tile">
+                                        <a class="tile-content ink-reaction">
+                                            <div class="tile-text">
+                                                <span id="carname"></span>
+                                                <small>Car Name</small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="tile">
+                                        <a class="tile-content ink-reaction">
+                                            <div class="tile-text">
+                                                Only Man
+                                                <small>Gender</small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="tile">
+                                        <a class="tile-content ink-reaction">
+                                            <div class="tile-text">
+                                                No
+                                                <small>A/C</small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </div><!--end .card-body -->
+                        </div><!--end .card -->
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-action" style="left:0 !important;">
+                <div class="section-action-row">
+                    <div class="btn-group btn-group-justified " role="group" aria-label="Justified button group">
+                        <a class="btn btn-flat btn-accent" id="delete" role="button">Delete Request</a>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
     <div id="menubar">
@@ -89,30 +193,30 @@
                                 <span class="title">Confirmed Rides</span>
                             </a>
                         </li>
-                        <li class="">
-                            <a href="ride-list.html" class="">
-                                <div class="gui-icon"><i class="zmdi zmdi-archive"></i></div>
-                                <span class="title">Pinned Rides</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="requests-ride.html">
-                                <div class="gui-icon">
-                                    <i class="zmdi zmdi-receipt"></i>
-                                </div>
-                                <span class="title">Requests Received<span class="badge style-danger">4</span></span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="sent-rides.html">
-                                <div class="gui-icon"><i class="zmdi zmdi-mail-send"></i></div>
-                                <span class="title">Requests Sent</span>
-                            </a>
-                        </li>
+                        <!--<li class="#">-->
+                            <!--<a href="#" class="">-->
+                                <!--<div class="gui-icon"><i class="zmdi zmdi-archive"></i></div>-->
+                                <!--<span class="title">Pinned Rides</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <!--<li class="#">-->
+                            <!--<a href="#">-->
+                                <!--<div class="gui-icon">-->
+                                    <!--<i class="zmdi zmdi-receipt"></i>-->
+                                <!--</div>-->
+                                <!--<span class="title">Requests Received<span class="badge style-danger"></span></span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <!--<li class="#">-->
+                            <!--<a href="#">-->
+                                <!--<div class="gui-icon"><i class="zmdi zmdi-mail-send"></i></div>-->
+                                <!--<span class="title">Requests Sent</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
                         <li>
                             <a href="notifications.html">
                                 <div class="gui-icon"><i class="zmdi zmdi-notifications"></i></div>
-                                <span class="title">Notifications<span class="badge style-danger">3</span></span>
+                                <span class="title">Notifications<span class="badge style-danger"></span></span>
                             </a>
                         </li>
                     </ul>
@@ -125,9 +229,9 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="../index.html">
                                     <div class="gui-icon"><i class="zmdi zmdi-long-arrow-return"></i></div>
-                                    <span class="title">Log Out</span>
+                                    <span class="title" onclick="localStorage.clear();">Log Out</span>
                                 </a>
                             </li>
 
@@ -147,9 +251,57 @@
 <script src="../assets/js/libs/jquery/jquery-migrate-1.2.1.min.js"></script>
 <script src="../assets/js/libs/bootstrap/bootstrap.min.js"></script>
 <script src="../assets/js/libs/nanoscroller/jquery.nanoscroller.min.js"></script>
+<script src="../assets/js/libs/bootstrap-rating/bootstrap-rating-input.min.js"></script>
 <script src="../assets/js/core/source/App.js"></script>
 <script src="../assets/js/core/source/AppNavigation.js"></script>
 
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: 'http://shyori.xcgstudio.com/own-request/',
+            data: {requested_id:localStorage.caller_id},
+            dataType: 'json',
+            crossDomain: true,
+            jsonpCallback: 'callback',
+            success: function (response) {
+                var ride = response.ride;
+                var request=response.request;
+                $('.has-actions').css("display", "");
 
+                localStorage.caller_ride_id=request[0][1];
+                localStorage.request_id=request[0][0];
+                localStorage.caller_ride_from=ride[0][1].substring(0,ride[0][1].indexOf(','));
+                localStorage.caller_ride_to=ride[0][2].substring(0,ride[0][1].indexOf(','));
+
+                $('#content').append();
+                $('#driver-name').text(ride[0][8]);
+                $('#ride-from').text(localStorage.caller_ride_from);
+                $('#ride-to').text(localStorage.caller_ride_to);
+                $('#total').text(ride[0][4]);
+                $('#avail').text(ride[0][5]);
+                $('#carname').text(ride[0][3]);
+                $('#price').text(ride[0][6]);
+            }
+        });
+    });
+    $('#delete').on('click',function () {
+        $.ajax({
+            type:"GET",
+            url:'http://shyori.xcgstudio.com/delete-request/',
+            data:{request_id:localStorage.request_id},
+            dataType:'json',
+            crossDomain:true,
+            jsonpCallback: 'callback',
+            success:function (response) {
+                    localStorage.request_lock=0;
+                    localStorage.caller_from=null;
+                    localStorage.caller_to=null;
+                    window.location.href="ride-list.html";
+
+            }
+        });
+    });
+</script>
 </body>
 </html>

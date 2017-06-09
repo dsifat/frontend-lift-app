@@ -78,7 +78,7 @@
                             <li>
                                 <a href="#">
                                     <div class="gui-icon"><i class="zmdi zmdi-turning-sign"></i></div>
-                                    <span class="title">Log Out</span>
+                                    <span class="title" onclick="localStorage.clear();">Log Out</span>
                                 </a>
                             </li>
 
@@ -95,7 +95,7 @@
 <script>
     $(document).ready(function () {
         $('#take').click(function () {
-            if(localStorage.caller_username==undefined){
+            if(1){
                 window.location.href="caller/login.html";
             }
             else {
@@ -103,7 +103,7 @@
             }
         });
         $('#give').click(function () {
-            if(localStorage.rider_username==undefined){
+            if(1){
                 window.location.href="rider/login.html";
             }
             else {
