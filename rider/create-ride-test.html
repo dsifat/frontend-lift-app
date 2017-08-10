@@ -10,20 +10,16 @@
     <meta name="description" content="Short explanation about this website">
 
     <!-- BEGIN STYLESHEETS -->
-    <link href='http://fonts.googleapis.com/css?family=Roboto:300italic,400italic,300,400,500,700,900' rel='stylesheet' type='text/css'/>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,300,400,600,700,800' rel='stylesheet'
+          type='text/css'/>
     <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/bootstrap.css"/>
     <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/materialadmin.css"/>
-    <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/material-design-iconic-font.min.css"/>
+    <link type="text/css" rel="stylesheet"
+          href="../assets/css/theme-2/libs/bootstrap-tagsinput/bootstrap-tagsinput.css"/>
     <!--Font Awesome Icon Font-->
-
-    <!-- BEGIN JAVASCRIPT -->
-    <script src="../assets/js/libs/jquery/jquery-1.11.2.min.js"></script>
-    <script src="../assets/js/libs/jquery/jquery-migrate-1.2.1.min.js"></script>
-    <script src="../assets/js/libs/bootstrap/bootstrap.min.js"></script>
-    <script src="../assets/js/libs/nanoscroller/jquery.nanoscroller.min.js"></script>
-    <script src="../assets/js/core/source/App.js"></script>
-    <script src="../assets/js/core/source/AppNavigation.js"></script>
-
+    <link type="text/css" rel="stylesheet" href="../assets/css/theme-2/material-design-iconic-font.min.css"/>
+    <!--Material Design Iconic Font-->
+    <!-- Additional CSS includes -->
 
 
 </head>
@@ -55,28 +51,28 @@
     </div>
 </header>
 <div id="base" class="no-padding">
-    <div id="content" class="col-xs-12 no-padding">
-        <section class="no-padding">
-            <div class="section-body">
-            <form  class="form-horizontal">
+    <div class="offcanvas">
+    </div>
+    <div id="content">
+        <section class="col-xs-12 style-info">
+            <form class="form-horizontal form-inverse no-padding">
                 <div class="card style-transparent no-padding">
-                    <div class="card-body no-padding">
+                    <div class="card-body">
                         <div class="form-group row">
-                            <div class="force-padding col-xs-2 zmdi zmdi-dot-circle text-center text-accent-dark"></div>
-                            <div class="col-xs-8">
-                                <input id="from" type="search" class="form-control"  placeholder="From">
+                            <i class="force-padding col-xs-2 zmdi zmdi-dot-circle text-center"></i>
+                            <div class="col-xs-10">
+                                <input type="text" class="form-control" id="from" placeholder="From">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <i class="force-padding col-xs-2 zmdi zmdi-pin text-center text-primary-dark"></i>
-                            <div class="col-xs-8">
-                                <input type="search" class="form-control" id="to" placeholder="To">
+                            <i class="force-padding col-xs-2 zmdi zmdi-pin text-center"></i>
+                            <div class="col-xs-10">
+                                <input type="text" class="form-control" id="to" placeholder="To">
                             </div>
                         </div>
                     </div><!--end .card-body -->
                 </div><!--end .card -->
             </form>
-            </div>
         </section>
         <div>
             <div class="section-body no-padding no-margin">
@@ -93,8 +89,10 @@
 <script src="../assets/js/libs/jquery/jquery-migrate-1.2.1.min.js"></script>
 <script src="../assets/js/libs/bootstrap/bootstrap.min.js"></script>
 <script src="../assets/js/libs/nanoscroller/jquery.nanoscroller.min.js"></script>
-<script src="../assets/js/core/source/App.js"></script>
-<script src="../assets/js/core/source/AppNavigation.js"></script>
+<script src="../assets/js/libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+
+<!-- Put App.js last in your javascript imports -->
+<script src="../assets/js/core/source/App.min.js"></script>
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaRBB4-Mi-5p3_MSmSsjR2BuLAwsjeG6Q&libraries=places&callback=initMap">
 </script>
@@ -108,21 +106,16 @@
             center: {lat: 23.8103, lng: 90.4125}
         });
         directionsDisplay.setMap(map);
-        var options = {
-            componentRestrictions: {country: "bd"}
-        };
         var onChangeHandler = function() {
             calculateAndDisplayRoute(directionsService, directionsDisplay);
         };
         var from = document.getElementById('from');
-        var searchFrom = new google.maps.places.Autocomplete(from,options);
+        var searchFrom = new google.maps.places.SearchBox(from);
         var to = document.getElementById('to');
-        var searchTo = new google.maps.places.Autocomplete(to,options);
-
+        var searchTo = new google.maps.places.SearchBox(to);
         document.getElementById('from').addEventListener('change', onChangeHandler);
         document.getElementById('to').addEventListener('change', onChangeHandler);
     }
-
     function calculateAndDisplayRoute(directionsService, directionsDisplay) {
         directionsService.route({
             origin: document.getElementById('from').value,
@@ -139,15 +132,17 @@
 </script>
 
 <script>
-    $('#forward').click(function () {
-        localStorage.caller_from=$('#from').val();
-        localStorage.caller_to=$('#to').val();
-        if (localStorage.caller_from !="" && localStorage.caller_to !=""){
-            window.location.href="ride-list.html";
-        }
-
+    $(document).ready(function () {
+        $("#forward").click(function () {
+            var $from=$('#from');
+            var $to=$('#to');
+            localStorage.rider_from=$from.val();
+            localStorage.rider_to=$to.val();
+            if(localStorage.rider_from !="" && localStorage.rider_to !=""){
+                window.location.href="create-ride-details.html";
+            }
+        });
     });
 </script>
-
 </body>
 </html>

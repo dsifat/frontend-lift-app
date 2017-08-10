@@ -115,7 +115,7 @@
                                     <li class="tile">
                                         <a class="tile-content ink-reaction">
                                             <div class="tile-text">
-                                                <span id="avail">4</span> Out Of <span id="total">6</span> Avaulable
+                                                <span id="avail">4</span> Out Of <span id="total">5</span> Avaulable
                                                 <small>Seats</small>
                                             </div>
                                         </a>
@@ -128,23 +128,6 @@
                                             </div>
                                         </a>
                                     </li>
-
-                                    <li class="tile">
-                                        <a class="tile-content ink-reaction">
-                                            <div class="tile-text">
-                                                12th May, 2016 05:36 PM
-                                                <small>Departure</small>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="tile">
-                                        <a class="tile-content ink-reaction">
-                                            <div class="tile-text">
-                                                <span id="carname"></span>
-                                                <small>Car Name</small>
-                                            </div>
-                                        </a>
-                                    </li>
                                     <!--<li class="tile">-->
                                         <!--<a class="tile-content ink-reaction">-->
                                             <!--<div class="tile-text">-->
@@ -153,14 +136,6 @@
                                             <!--</div>-->
                                         <!--</a>-->
                                     <!--</li>-->
-                                    <li class="tile">
-                                        <a class="tile-content ink-reaction">
-                                            <div class="tile-text">
-                                                Yes
-                                                <small>A/C</small>
-                                            </div>
-                                        </a>
-                                    </li>
                                 </ul>
 
                             </div><!--end .card-body -->
@@ -279,16 +254,16 @@
             jsonpCallback: 'callback',
             success: function (response) {
                 var ride=response.ride;
-                console.log(response.ride[0][0]);
+                console.log(response.ride[0]);
                 localStorage.rider_from=ride[0][1];
                 localStorage.rider_to=ride[0][2];
                 localStorage.rider_ride_id=ride[0][0];
                 $('#ride-from').text(ride[0][1].substring(0,ride[0][1].indexOf(',')));
                 $('#ride-to').text(ride[0][2].substring(0,ride[0][2].indexOf(',')));
-                $('#total').text(ride[0][4]);
+//                $('#total').text(ride[0][4]);
                 $('#avail').text(ride[0][5]);
                 $('#spinner').attr("value",ride[0][5]);
-                $('#carname').text(ride[0][3]);
+//                $('#carname').text(ride[0][3]);
                 $('#price').text(ride[0][6]);
             }
         });

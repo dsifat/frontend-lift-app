@@ -96,14 +96,14 @@
             $rider_id=localStorage.rider_id;
             $from=localStorage.rider_from;
             $to=localStorage.rider_to;
-            if ($price!="" && $total!="" && $avail!=""){
+            if ($price!="" && $avail!=""){
                 $.ajax({
                     type:"GET",
                     url:"http://shyori.xcgstudio.com/create-ride/",
                     dataType:'json',
                     crossDomain:true,
                     jsonpCallback: 'callback',
-                    data:{from:$from,to:$to,total:$total,avail:$avail,carname:$carname,price:$price,rider_id:$rider_id,username:localStorage.rider_username},
+                    data:{from:$from,to:$to,avail:$avail,price:$price,rider_id:$rider_id,username:localStorage.rider_username},
                     success:function (response) {
                         console.log(response.insertion);
                         if(response.insertion="success"){
